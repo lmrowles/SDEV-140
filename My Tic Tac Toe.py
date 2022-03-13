@@ -5,10 +5,12 @@ import random as rm
 from tkinter import messagebox as mx
 from copy import deepcopy as dc
 
+# creates board
 global board
 board = [[" " for x in range(3)] for y in range(3)]
 
 
+# this module creates a splash screen when user no longer wishes to play
 def thank_you(gboard):
     gboard.destroy()
     ty = tk.Tk()
@@ -30,6 +32,7 @@ def thank_you(gboard):
     ty.mainloop()
 
 
+# resets the board to play again
 def replay(gboard, box):
     global board
     if box == 'yes':
@@ -40,6 +43,7 @@ def replay(gboard, box):
         thank_you(gboard)
 
 
+# checks if there is a winner
 def winner(gboard, token):
     return ((gboard[0][0] == token and gboard[0][1] == token and gboard[0][2] == token) or
             (gboard[1][0] == token and gboard[1][1] == token and gboard[1][2] == token) or
@@ -56,6 +60,7 @@ def isfree(i, j):
     return board[i][j] == " "
 
 
+# checks to see if the board is full
 def isfull():
     flag = True
     for i in board:
@@ -64,6 +69,7 @@ def isfull():
     return flag
 
 
+# this is the computers logic for selecting a move
 def pc():
     moves = []
     for x in range(len(board)):
@@ -95,6 +101,7 @@ def pc():
             return edges[move]
 
 
+# this gets the text for the board and or the winner
 def get_text(x, y, gboard, player1, player2, player):
     global sign
     global button
@@ -155,6 +162,7 @@ def get_text(x, y, gboard, player1, player2, player):
             replay(gboard, box)
 
 
+# creates the gameboard
 def game_board(gboard, player1, player2, player):
     global button
     button = []
@@ -171,6 +179,7 @@ def game_board(gboard, player1, player2, player):
     gboard.mainloop()
 
 
+# this starts the play of the game
 def play(gboard, player):
     # destroy menu and create new window
     gboard.destroy()
@@ -194,6 +203,7 @@ def play(gboard, player):
     game_board(gboard, player1, player2, player)
 
 
+# main module - sets all variables and gives menu options
 def main():
     # global variables
     global sign
